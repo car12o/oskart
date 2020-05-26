@@ -5,6 +5,7 @@ export const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#0087BF",
+      light: "rgb(0, 135, 191, 0.6)",
     },
     secondary: {
       main: "#19857b",
@@ -16,7 +17,7 @@ export const theme = createMuiTheme({
       default: "#fff",
     },
   },
-  spacing: 4,
+  spacing: 8,
   typography: {
     fontSize: 12,
   },

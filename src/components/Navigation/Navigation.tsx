@@ -1,20 +1,20 @@
 import React, { Component } from "react"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import { compose } from "lodash/fp"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import createStyles from "@material-ui/core/styles/createStyles"
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
-import { NavigationHeader } from "./NavigationHeader"
-import { NavigationBottom } from "./NavigationBottom"
+import { WithDevice, withDevice } from "providers/Device"
+import { Section } from "components/Section"
+import { NavigationMobile } from "./NavigationMobile"
+import { NavigationDesktop } from "./NavigationDesktop"
 
-const styles = ({ spacing }: Theme) => createStyles({
-  content: {
-    marginTop: "55px",
-    padding: spacing(0, 3),
+const styles = createStyles({
+  root: {
+    marginTop: ({ device }: WithDevice) => device.isMobile ? "52px" : "100px",
   },
 })
 
-export interface NavigationProps extends WithStyles<typeof styles>, RouteComponentProps { }
+export interface NavigationProps extends WithStyles<typeof styles>, RouteComponentProps, WithDevice { }
 
 export interface NavigationState {
   menu: string
@@ -36,13 +36,16 @@ class Navigation$ extends Component<NavigationProps, NavigationState> {
   }
 
   onScroll() {
-    const { prevScrollpos } = this.state
-    const currentScrollPos = window.pageYOffset
-    const visible = prevScrollpos > currentScrollPos
-    this.setState({
-      visible,
-      prevScrollpos: currentScrollPos,
-    })
+    const { device } = this.props
+    if (device.isMobile) {
+      const { prevScrollpos } = this.state
+      const currentScrollPos = window.pageYOffset
+      const visible = prevScrollpos > currentScrollPos
+      this.setState({
+        visible,
+        prevScrollpos: currentScrollPos,
+      })
+    }
   }
 
   onChange(menu: string) {
@@ -53,21 +56,35 @@ class Navigation$ extends Component<NavigationProps, NavigationState> {
 
   render() {
     const { menu, visible } = this.state
-    const { classes, children } = this.props
+    const { classes, device, children } = this.props
 
     return (
       <>
-        <NavigationHeader />
-        <NavigationBottom value={menu} visible={visible} onChange={this.onChange} />
-        <div className={classes.content}>
+        {device.isMobile && (
+          <NavigationMobile
+            menu={menu}
+            visible={visible}
+            onChange={(_, menu) => this.onChange(menu)}
+          />
+        )}
+
+        {device.isDesktop && (
+          <NavigationDesktop
+            menu={menu}
+            visible={visible}
+            onChange={(_, menu) => this.onChange(menu)}
+          />
+        )}
+        <Section classes={classes}>
           {children}
-        </div>
+        </Section>
       </>
     )
   }
 }
 
 export const Navigation = compose(
+  withDevice,
   withRouter,
   withStyles(styles),
 )(Navigation$)
