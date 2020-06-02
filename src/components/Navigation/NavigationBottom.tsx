@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ChangeEvent } from "react"
+import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import makeStyles from "@material-ui/core/styles/makeStyles"
 import BottomNavigation from "@material-ui/core/BottomNavigation"
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction"
@@ -8,7 +9,6 @@ import ViewListRounded from "@material-ui/icons/ViewListRounded"
 import ShoppingCartRounded from "@material-ui/icons/ShoppingCartRounded"
 import EmailRounded from "@material-ui/icons/EmailRounded"
 import { DeviceContext, useDevice } from "providers/Device"
-import { Theme } from "@material-ui/core"
 
 const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   root: {
@@ -17,7 +17,9 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     left: ({ isMobile }: DeviceContext) => isMobile ? "0" : "",
     width: ({ isMobile }: DeviceContext) => isMobile ? "100vw" : "",
     height: ({ isMobile }: DeviceContext) => isMobile ? "50px" : "",
-    boxShadow: ({ isMobile }: DeviceContext) => isMobile ? "0px -2px 2px 0px rgba(0,0,0,0.2)" : "",
+    boxShadow: ({ isMobile }: DeviceContext) => isMobile
+      ? "0px -3px 3px -2px rgba(0,0,0,0.2), 0px -3px 4px 0px rgba(0,0,0,0.14), 0px -1px 8px 0px rgba(0,0,0,0.12)"
+      : "",
     transition: "bottom 0.5s",
   },
   hide: {
@@ -43,8 +45,8 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
 
 interface Menu {
   route: string
-  Label: FunctionComponent<{ classes: ReturnType<typeof useStyles> }>
-  Icon: FunctionComponent<{ classes: ReturnType<typeof useStyles> }>
+  Label: FunctionComponent<{ classes: Partial<ReturnType<typeof useStyles>> }>
+  Icon: FunctionComponent<{ classes: Partial<ReturnType<typeof useStyles>> }>
 }
 
 const menus: Menu[] = [

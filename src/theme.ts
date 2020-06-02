@@ -14,7 +14,7 @@ export const theme = createMuiTheme({
       main: red.A400,
     },
     background: {
-      default: "#fff",
+      default: "rgb(242, 244, 245)",
     },
   },
   spacing: 8,

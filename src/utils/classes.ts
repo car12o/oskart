@@ -3,8 +3,12 @@ import entries from "lodash/fp/entries"
 import map from "lodash/fp/map"
 import fromPairs from "lodash/fp/fromPairs"
 
-export const mergeClasses = (classes: Record<string, string>) => compose(
+export type MergeClasses = <C extends Partial<Record<string, string>>>(classes: C | undefined) => <B>(base: B) => B
+
+export const mergeClasses: MergeClasses = (classes) => (base) => compose(
   fromPairs,
-  map(([key, value]: string[]) => [key, `${value} ${classes[key] || ""}`]),
+  map(([key, value]: string[]) => classes && classes[key]
+    ? [key, `${value || ""} ${classes[key] || ""}`.trim()]
+    : [key, value]),
   entries,
-)
+)(base)

@@ -10,7 +10,7 @@ import { NavigationDesktop } from "./NavigationDesktop"
 
 const styles = createStyles({
   root: {
-    marginTop: ({ device }: WithDevice) => device.isMobile ? "52px" : "100px",
+    margin: ({ device }: WithDevice) => device.isMobile ? "52px 0 50px 0" : "100px 0 0 0",
   },
 })
 

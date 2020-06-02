@@ -9,18 +9,18 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
   root: {
     width: ({ isMobile }: DeviceContext) => isMobile ? "100%" : "1150px",
     margin: "0 auto",
-    padding: ({ isMobile }: DeviceContext) => isMobile ? spacing(0, 1) : "",
+    padding: ({ isMobile }: DeviceContext) => isMobile ? spacing(2) : "",
   },
 }))
 
 export interface SectionProps {
-  classes?: ReturnType<typeof useStyles>
+  classes?: Partial<ReturnType<typeof useStyles>>
 }
 
 export const Section: FunctionComponent<SectionProps> = ({ classes: c, children }) => {
   const device = useDevice()
   const classes = compose(
-    mergeClasses(c || {}),
+    mergeClasses(c),
     useStyles,
   )(device)
 

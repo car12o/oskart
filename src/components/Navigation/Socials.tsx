@@ -10,6 +10,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   root: {
     display: "flex",
     justifyContent: "flex-end",
+    padding: ({ isMobile }: DeviceContext) => isMobile ? "0" : "",
   },
   icon: {
     fontSize: ({ isMobile }: DeviceContext) => isMobile ? "32px" : "25px",
