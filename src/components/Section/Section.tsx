@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react"
 import compose from "lodash/fp/compose"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
-import makeStyles from "@material-ui/core/styles/makeStyles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import { DeviceContext, useDevice } from "providers/Device"
 import { mergeClasses } from "utils/classes"
 

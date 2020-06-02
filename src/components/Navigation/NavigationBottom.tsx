@@ -1,6 +1,5 @@
 import React, { FunctionComponent, ChangeEvent } from "react"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
-import makeStyles from "@material-ui/core/styles/makeStyles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import BottomNavigation from "@material-ui/core/BottomNavigation"
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction"
 import Badge from "@material-ui/core/Badge"

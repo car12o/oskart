@@ -1,6 +1,5 @@
 import React from "react"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
-import makeStyles from "@material-ui/core/styles/makeStyles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Facebook from "@material-ui/icons/Facebook"
 import Twitter from "@material-ui/icons/Twitter"
 import { DeviceContext, useDevice } from "providers/Device"

@@ -1,7 +1,6 @@
 import React from "react"
 import chunk from "lodash/fp/chunk"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
-import makeStyles from "@material-ui/core/styles/makeStyles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import { Card } from "./Card"
 
 const useStyles = makeStyles(({ spacing }: Theme) => ({

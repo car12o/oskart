@@ -1,7 +1,6 @@
 import React, { SyntheticEvent } from "react"
-import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import compose from "lodash/fp/compose"
-import makeStyles from "@material-ui/core/styles/makeStyles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import MuiCard from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import Typography from "@material-ui/core/Typography"
