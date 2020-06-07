@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ChangeEvent } from "react"
+import React, { FunctionComponent, ChangeEvent, memo } from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import BottomNavigation from "@material-ui/core/BottomNavigation"
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction"
@@ -81,7 +81,7 @@ export interface NavigationBottomProps {
   onChange: (event: ChangeEvent<{}>, menu: string) => void
 }
 
-export const NavigationBottom = ({ menu, visible, onChange }: NavigationBottomProps) => {
+export const NavigationBottom = memo(({ menu, visible, onChange }: NavigationBottomProps) => {
   const device = useDevice()
   const classes = useStyles(device)
 
@@ -104,4 +104,4 @@ export const NavigationBottom = ({ menu, visible, onChange }: NavigationBottomPr
       ))}
     </BottomNavigation>
   )
-}
+})
