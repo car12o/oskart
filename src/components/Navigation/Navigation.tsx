@@ -47,12 +47,15 @@ class Navigation$ extends Component<NavigationProps, NavigationState> {
   onScroll() {
     const { device } = this.props
     if (device.isMobile) {
-      const element = document.activeElement as HTMLElement
-      element.blur()
-
       const { prevScrollpos } = this.state
       const currentScrollPos = window.pageYOffset
       const visible = prevScrollpos > currentScrollPos
+
+      if (visible || currentScrollPos <= 40) {
+        const element = document.activeElement as HTMLElement
+        element.blur()
+      }
+
       this.setState({
         visible,
         prevScrollpos: currentScrollPos,

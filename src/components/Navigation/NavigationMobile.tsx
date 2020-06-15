@@ -22,7 +22,7 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     backgroundColor: "#ffffff",
     boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)",
   },
-  bannerContainer: {
+  container: {
     position: "absolute",
     width: "92%",
     height: "100%",
@@ -31,17 +31,18 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
     justifyContent: "space-between",
     transition: "0.5s",
   },
-  bannerOpacity: {
+  opacity: {
     opacity: 0,
   },
-  searchBanner: {
+  search: {
     height: "35px",
     margin: 0,
     boxShadow: "none",
     border: "1px solid rgba(0, 0, 0, 0.35)",
   },
-  search: {
+  section: {
     marginTop: spacing(1.5),
+    transition: "0.5s",
   },
   filter: {
     fontSize: "32px",
@@ -51,11 +52,6 @@ const useStyles = makeStyles(({ palette, spacing }: Theme) => ({
   img: {
     width: "142px",
     paddingBottom: spacing(0.5),
-  },
-  icon: {
-    fontSize: "32px",
-    marginLeft: spacing(2.5),
-    color: palette.action.active,
   },
 }))
 
@@ -77,12 +73,12 @@ export const NavigationMobile = memo(({ menu, visible, onChange, refCurrent, set
   return (
     <Section classes={classes}>
       <Section classes={{ root: classes.banner }}>
-        <div className={`${classes.bannerContainer} ${(refCurrent && !swap) && classes.bannerOpacity}`.trim()}>
+        <div className={`${classes.container} ${(refCurrent && !swap) && classes.opacity}`.trim()}>
           <img className={classes.img} src={Logo} alt="Oskart RC" />
           <Socials />
         </div>
-        <div className={`${classes.bannerContainer} ${(!refCurrent || swap) && classes.bannerOpacity}`.trim()}>
-          <Input classes={{ root: classes.searchBanner }} onFocus={() => setVisible(false)} />
+        <div className={`${classes.container} ${(!refCurrent || swap) && classes.opacity}`.trim()}>
+          <Input classes={{ root: classes.search }} onFocus={() => setVisible(false)} />
           <TuneRounded className={classes.filter} />
         </div>
         <NavigationBottom
@@ -91,7 +87,7 @@ export const NavigationMobile = memo(({ menu, visible, onChange, refCurrent, set
           onChange={onChange}
         />
       </Section>
-      <Section classes={{ root: `${classes.search} ${(!refCurrent || !swap) && classes.bannerOpacity}`.trim() }}>
+      <Section classes={{ root: `${classes.section} ${(!refCurrent || !swap) && classes.opacity}`.trim() }}>
         <Input onFocus={() => setVisible(false)} />
       </Section>
     </Section>
