@@ -4,7 +4,6 @@ import { compose } from "lodash/fp"
 import createStyles from "@material-ui/core/styles/createStyles"
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles"
 import { WithDevice, withDevice } from "providers/Device"
-import { Section } from "components/Section"
 import { NavigationMobile } from "./NavigationMobile"
 import { NavigationDesktop } from "./NavigationDesktop"
 
@@ -26,7 +25,7 @@ export interface NavigationState {
 }
 
 class Navigation$ extends Component<NavigationProps, NavigationState> {
-  private ref: RefObject<HTMLElement>
+  private ref: RefObject<HTMLDivElement>
 
   constructor(props: NavigationProps) {
     super(props)
@@ -94,12 +93,12 @@ class Navigation$ extends Component<NavigationProps, NavigationState> {
             onChange={(_, menu) => this.onChange(menu)}
           />
         )}
-        <Section
+        <div
           ref={this.ref}
-          classes={{ root: `${classes.root} ${isProducts && classes.products}`.trim() }}
+          className={`${classes.root} ${isProducts && classes.products}`.trim()}
         >
           {children}
-        </Section>
+        </div>
       </>
     )
   }

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, RefObject, Ref, forwardRef } from "react"
+import React, { FunctionComponent, RefObject } from "react"
 import compose from "lodash/fp/compose"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import { DeviceContext, useDevice } from "providers/Device"
@@ -17,17 +17,16 @@ export interface SectionProps {
   ref?: RefObject<HTMLElement>
 }
 
-export const Section: FunctionComponent<SectionProps> =
-  forwardRef(({ classes: c, children }, ref?: Ref<HTMLElement>) => {
-    const device = useDevice()
-    const classes = compose(
-      mergeClasses(c),
-      useStyles,
-    )(device)
+export const Section: FunctionComponent<SectionProps> = ({ classes: c, children }) => {
+  const device = useDevice()
+  const classes = compose(
+    mergeClasses(c),
+    useStyles,
+  )(device)
 
-    return (
-      <section ref={ref} className={classes.root}>
-        {children}
-      </section>
-    )
-  })
+  return (
+    <section className={classes.root}>
+      {children}
+    </section>
+  )
+}

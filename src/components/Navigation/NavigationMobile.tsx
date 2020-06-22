@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect, memo } from "react"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import TuneRounded from "@material-ui/icons/TuneRounded"
 import { Section } from "components/Section"
-import { Input } from "components/Input"
+import { Search } from "components/Products/Search"
 import { Socials } from "./Socials"
 import { NavigationBottomProps, NavigationBottom } from "./NavigationBottom"
 import Logo from "img/logo.png"
@@ -78,7 +78,7 @@ export const NavigationMobile = memo(({ menu, visible, onChange, refCurrent, set
           <Socials />
         </div>
         <div className={`${classes.container} ${(!refCurrent || swap) && classes.opacity}`.trim()}>
-          <Input classes={{ root: classes.search }} onFocus={() => setVisible(false)} />
+          <Search classes={{ root: classes.search }} onFocus={() => setVisible(false)} />
           <TuneRounded className={classes.filter} />
         </div>
         <NavigationBottom
@@ -88,7 +88,7 @@ export const NavigationMobile = memo(({ menu, visible, onChange, refCurrent, set
         />
       </Section>
       <Section classes={{ root: `${classes.section} ${(!refCurrent || !swap) && classes.opacity}`.trim() }}>
-        <Input onFocus={() => setVisible(false)} />
+        <Search onFocus={() => setVisible(false)} />
       </Section>
     </Section>
   )

@@ -28,12 +28,12 @@ const useStyles = makeStyles(({ spacing }: Theme) => ({
   },
 }))
 
-export interface InputProps {
+export interface SearchProps {
   classes?: Partial<ReturnType<typeof useStyles>>
   onFocus?: (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
-export const Input = ({ classes: c, onFocus }: InputProps) => {
+export const Search = ({ classes: c, onFocus }: SearchProps) => {
   const classes = compose(
     mergeClasses(c),
     useStyles,
